@@ -18,7 +18,11 @@ case "$1" in
    ;;
   stop)
     echo "Stopping stat_logger"
-    kill `cat /tmp/exampled.lock`
+    if [ -f /tmp/stat_logger.pid ]; then
+      kill `cat /tmp/stat_logger.pid`
+    else
+      echo "Nothing to stop, consider starting the service first"
+    fi
     ;;
   *)
     echo "Usage: /etc/init.d/stat_logger {start|stop}"
