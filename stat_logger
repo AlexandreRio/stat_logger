@@ -1,0 +1,29 @@
+#! /bin/sh
+# /etc/init.d/stat_logger
+
+### BEGIN INIT INFO
+# Provides:          stat_logger 
+# Required-Start:    $local_fs $remote_fs $network $syslog
+# Required-Stop:     $local_fs $remote_fs $network $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Simple service to log Rest API result 
+# Description:       Statistic logger for a remote API
+### END INIT INFO
+
+case "$1" in
+  start)
+    echo "Starting stat_logger"
+    /home/orbital/dev/pi/a.out
+   ;;
+  stop)
+    echo "Stopping stat_logger"
+    kill `cat /tmp/exampled.lock`
+    ;;
+  *)
+    echo "Usage: /etc/init.d/stat_logger {start|stop}"
+    exit 1
+    ;;
+esac
+
+exit 0
