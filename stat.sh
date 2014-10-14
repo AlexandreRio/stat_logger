@@ -2,8 +2,8 @@
 
 JQ="jq"
 BTC_ADDRESS=""
-LOG="log.csv"
-DATA="data.json"
+LOG="/var/log/stat_logger.csv"
+DATA="/tmp/data.json"
 
 
 TIME=`date +"%d/%m/%y %T"`

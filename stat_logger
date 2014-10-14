@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 # /etc/init.d/stat_logger
 
 ### BEGIN INIT INFO
@@ -11,28 +11,32 @@
 # Description:       Statistic logger for a remote API
 ### END INIT INFO
 
+PID_FILE="/var/run/stat_logger.pid"
+EXEC_FILE="/usr/local/bin/stat_logger"
+
 case "$1" in
   start)
     echo "Starting stat_logger"
-    /home/orbital/dev/pi/a.out
-   ;;
+    $EXEC_FILE
+    ;;
   stop)
-    if [ -f /tmp/stat_logger.pid ]; then
+    if [ -f $PID_FILE ]; then
       echo "Stopping stat_logger"
-      kill `cat /tmp/stat_logger.pid`
+      kill `cat $PID_FILE`
+      rm $PID_FILE
     else
       echo "Nothing to stop, consider starting the service first"
     fi
     ;;
   status)
-    if [ -f /tmp/stat_logger.pid ]; then
+    if [ -f $PID_FILE ]; then
       echo "stat_logger is running"
     else
       echo "stat_logger is not running"
     fi
     ;;
   *)
-    echo "Usage: /etc/init.d/stat_logger {start|stop|status}"
+    echo "Usage: service stat_logger {start|stop|status}"
     exit 1
     ;;
 esac

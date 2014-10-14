@@ -17,7 +17,7 @@ To terminate: kill `cat /tmp/exampled.lock`
 #include <unistd.h>
 
 #define RUNNING_DIR "/tmp"
-#define LOCK_FILE "stat_logger.pid"
+#define LOCK_FILE "/var/run/stat_logger.pid"
 #define LOG_FILE  "/var/log/stat_logger.log"
 
 void log_message(filename,message)
